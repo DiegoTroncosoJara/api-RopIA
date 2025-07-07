@@ -11,6 +11,8 @@
   "keywords": [],
   "description": "",
   "dependencies": {
+    "@clerk/backend": "^2.4.0",
+    "@clerk/express": "^1.7.4",
     "@sequelize/mysql": "^7.0.0-alpha.46",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
