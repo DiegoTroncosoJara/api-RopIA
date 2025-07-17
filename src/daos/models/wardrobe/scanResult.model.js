@@ -14,7 +14,7 @@ const ScanResult = sequelize.define(
     user_id: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false,
-      references: { model: "users", key: "id" },
+      references: { model: "users", key: "clerk_user_id" },
     },
     wardrobe_item_id: {
       type: DataTypes.BIGINT.UNSIGNED,

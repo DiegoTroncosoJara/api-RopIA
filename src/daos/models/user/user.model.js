@@ -9,19 +9,38 @@ const User = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    email: { type: DataTypes.STRING(255), allowNull: false, unique: true },
-    password_hash: { type: DataTypes.STRING(255), allowNull: false },
+    clerk_user_id: {
+      // ← ID de Clerk (obligatorio y único)
+      type: DataTypes.STRING(128),
+      allowNull: false,
+      unique: true,
+    },
+    email: {
+      // opcional, útil para referencias
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
     user_type: {
       type: DataTypes.ENUM("consumer", "provider"),
       allowNull: false,
       defaultValue: "consumer",
     },
-    email_verified_at: { type: DataTypes.DATE, allowNull: true },
-    phone: { type: DataTypes.STRING(20), allowNull: true },
-    is_active: { type: DataTypes.BOOLEAN, defaultValue: true },
-    last_login_at: { type: DataTypes.DATE, allowNull: true },
-    created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-    updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    phone: {
+      type: DataTypes.STRING(20),
+      allowNull: true,
+    },
+    is_active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     tableName: "users",
