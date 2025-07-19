@@ -2,6 +2,10 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { clerkMiddleware, requireAuth, clerkClient } from "@clerk/express";
+import path from "path";
+import sequelize from "./db/connection.js";
+
+import uploadRouter from "./routes/upload.router.js";
 
 const app = express();
 app.use(
@@ -20,6 +24,9 @@ app.use(express.json());
 //   console.log(`[${req.method}] ${req.url}`);
 //   next();
 // });
+
+app.use("/api/archivo", express.static(path.resolve("archivo")));
+app.use("/api/files", uploadRouter);
 
 // Endpoint seguro para asignar rol
 app.post("/api/set-role", requireAuth(), async (req, res) => {
@@ -44,10 +51,8 @@ app.post("/api/set-role", requireAuth(), async (req, res) => {
   }
 });
 
-app.post("/api/aux", async (req, res) => {
-  console.log("dale loco");
-
-  console.log("ENTRANDO AUX", req.auth.session.userId);
+sequelize.sync({ alter: true }).then(() => {
+  console.log("📌 Modelos sincronizados con MySQL.");
 });
 
 const PORT = process.env.PORT || 8084;

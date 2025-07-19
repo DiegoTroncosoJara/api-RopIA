@@ -10,13 +10,11 @@ const User = sequelize.define(
       primaryKey: true,
     },
     clerk_user_id: {
-      // ← ID de Clerk (obligatorio y único)
       type: DataTypes.STRING(128),
       allowNull: false,
       unique: true,
     },
     email: {
-      // opcional, útil para referencias
       type: DataTypes.STRING(255),
       allowNull: true,
     },
