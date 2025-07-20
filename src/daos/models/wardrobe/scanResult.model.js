@@ -12,7 +12,7 @@ const ScanResult = sequelize.define(
       primaryKey: true,
     },
     user_id: {
-      type: DataTypes.BIGINT.UNSIGNED,
+      type: DataTypes.STRING(128),
       allowNull: false,
       references: { model: "users", key: "clerk_user_id" },
     },
