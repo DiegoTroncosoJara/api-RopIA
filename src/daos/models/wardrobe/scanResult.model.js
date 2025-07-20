@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../../db/connection.js";
+import sequelize from "../../../db/connection.js";
 import User from "../user/user.model.js";
 import WardrobeItem from "./wardrobeItem.model.js";
 
@@ -44,10 +44,5 @@ const ScanResult = sequelize.define(
     timestamps: false,
   }
 );
-
-User.hasMany(ScanResult, { foreignKey: "user_id" });
-ScanResult.belongsTo(User, { foreignKey: "user_id" });
-WardrobeItem.hasMany(ScanResult, { foreignKey: "wardrobe_item_id" });
-ScanResult.belongsTo(WardrobeItem, { foreignKey: "wardrobe_item_id" });
 
 export default ScanResult;

@@ -6,6 +6,7 @@ import path from "path";
 import sequelize from "./db/connection.js";
 
 import uploadRouter from "./routes/upload.router.js";
+import scanRouter from "./routes/scanResult.router.js";
 
 const app = express();
 app.use(
@@ -25,6 +26,7 @@ app.use(express.json());
 //   next();
 // });
 
+app.use("/api/scan", scanRouter);
 app.use("/api/archivo", express.static(path.resolve("archivo")));
 app.use("/api/files", uploadRouter);
 

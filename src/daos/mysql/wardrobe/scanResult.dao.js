@@ -1,5 +1,5 @@
 import MysqlDao from "../mysql.dao.js";
-import ScanResult from "../../models/wardrobe/scanResult.model.js";
+import { ScanResult } from "../../models/index.js";
 
 class ScanResultDaoMysql extends MysqlDao {
   constructor() {

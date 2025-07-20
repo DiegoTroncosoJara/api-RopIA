@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../../db/connection.js";
+import sequelize from "../../../db/connection.js";
 import User from "../user/user.model.js";
 
 const WardrobeItem = sequelize.define(
@@ -41,8 +41,5 @@ const WardrobeItem = sequelize.define(
     timestamps: false,
   }
 );
-
-User.hasMany(WardrobeItem, { foreignKey: "user_id" });
-WardrobeItem.belongsTo(User, { foreignKey: "user_id" });
 
 export default WardrobeItem;
