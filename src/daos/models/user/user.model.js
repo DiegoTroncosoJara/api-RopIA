@@ -19,9 +19,9 @@ const User = sequelize.define(
       allowNull: true,
     },
     user_type: {
-      type: DataTypes.ENUM("consumer", "provider"),
+      type: DataTypes.ENUM("cliente", "proveedor"),
       allowNull: false,
-      defaultValue: "consumer",
+      defaultValue: "cliente",
     },
     phone: {
       type: DataTypes.STRING(20),
