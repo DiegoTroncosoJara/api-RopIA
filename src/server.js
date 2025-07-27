@@ -21,10 +21,10 @@ app.use(express.json());
 // app.use(clerkMiddleware());
 // app.use(requireAuth());
 
-// app.use((req, res, next) => {
-//   console.log(`[${req.method}] ${req.url}`);
-//   next();
-// });
+app.use((req, res, next) => {
+  console.log(`[${req.method}] ${req.url}`);
+  next();
+});
 
 app.use("/api/scan", scanRouter);
 app.use("/api/archivo", express.static(path.resolve("archivo")));

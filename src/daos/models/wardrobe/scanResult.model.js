@@ -16,28 +16,39 @@ const ScanResult = sequelize.define(
       allowNull: false,
       references: { model: "users", key: "clerk_user_id" },
     },
-    wardrobe_item_id: {
-      type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: true,
-      references: { model: "wardrobe_items", key: "id" },
-    },
     scan_type: {
       type: DataTypes.ENUM(
         "new_item",
         "condition_check",
         "sustainability_check"
       ),
+      allowNull: true,
+    },
+    composition: {
+      type: DataTypes.STRING(500),
       allowNull: false,
     },
-    photo_url: { type: DataTypes.STRING(500), allowNull: false },
-    ai_analysis: { type: DataTypes.JSON, allowNull: true },
-    detected_materials: { type: DataTypes.JSON, allowNull: true },
-    condition_assessment: { type: DataTypes.JSON, allowNull: true },
-    sustainability_metrics: { type: DataTypes.JSON, allowNull: true },
-    recommendations: { type: DataTypes.JSON, allowNull: true },
-    confidence_score: { type: DataTypes.DECIMAL(5, 2), allowNull: true },
-    processing_time_ms: { type: DataTypes.INTEGER, allowNull: true },
-    created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    condition_detected: {
+      type: DataTypes.STRING(500),
+      allowNull: false,
+    },
+    ai_confidence: {
+      type: DataTypes.STRING(500),
+      allowNull: false,
+    },
+    recommendations: {
+      type: DataTypes.STRING(500),
+      allowNull: false,
+    },
+    photo_url: {
+      type: DataTypes.STRING(500),
+      allowNull: false,
+    },
+
+    created_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     tableName: "scan_results",

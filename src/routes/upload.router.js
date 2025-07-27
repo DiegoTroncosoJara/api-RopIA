@@ -15,7 +15,6 @@ router.post("/", uploadWardrobeScanner.array("archivos"), async (req, res) => {
     }
 
     const relativePath = req.carpetaDestino.replace(/\\/g, "/"); // En caso de Windows
-
     // Guarda cada archivo en la base de datos
     for (const file of req.files) {
       await FilesStorage.create({

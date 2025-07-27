@@ -16,18 +16,21 @@ class ScanResultService extends Services {
         ai_confidence,
         recommendations,
         name,
-        clothing_type,
-        condition_status,
+        clothing_type = "other",
         impact_water_saved,
         impact_co2_saved,
         impact_waste_saved,
+        photo_url,
       } = data;
+      console.log("data: ", data);
+
       const newScannResult = await this.dao.create({
         user_id,
         composition,
         condition_detected,
         ai_confidence,
         recommendations,
+        photo_url,
       });
 
       await WardrobeItem.create({
@@ -36,7 +39,7 @@ class ScanResultService extends Services {
         name,
         clothing_type,
         composition,
-        condition_status,
+        condition_status: condition_detected,
         impact_water_saved,
         impact_co2_saved,
         impact_waste_saved,
