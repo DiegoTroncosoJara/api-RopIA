@@ -10,14 +10,23 @@ class ScanResultDaoMysql extends MysqlDao {
     try {
       const data = await this.model.sequelize.query(
         `
-        SELECT 
-          wi.id, wi.name, wi.clothing_type, wi.composition, wi.condition_status,
-          wi.action_taken, wi.action_date, wi.action_location, wi.created_at,
-          wi.impact_water_saved, wi.impact_co2_saved, wi.impact_waste_saved
-        FROM wardrobe_items wi
-        WHERE wi.user_id = :userId AND wi.is_active = true
-        ORDER BY wi.created_at DESC
-        `,
+      SELECT 
+        wi.id,
+        wi.name,
+        wi.clothing_type AS type,
+        wi.composition,
+        wi.condition_status AS \`condition\`, 
+        wi.action_taken AS action,
+        wi.action_date,
+        wi.action_location,
+        wi.created_at AS dateAdded,
+        wi.impact_water_saved AS impactWater,
+        wi.impact_co2_saved AS impactCO2,
+        wi.impact_waste_saved AS impactWaste
+      FROM wardrobe_items wi
+      WHERE wi.user_id = :userId AND wi.is_active = true
+      ORDER BY wi.created_at DESC
+      `,
         {
           type: this.model.sequelize.QueryTypes.SELECT,
           replacements: { userId: userId },
@@ -47,7 +56,7 @@ class ScanResultDaoMysql extends MysqlDao {
         }
       );
 
-      return data;
+      return data[0];
     } catch (error) {
       throw new Error(error);
     }

@@ -55,21 +55,18 @@ class ScanResultService extends Services {
 
       const impactResult = await this.dao.calculateTotalImpact(userId);
 
-      const totalImpact =
-        Array.isArray(impactResult) && impactResult.length > 0
-          ? impactResult[0]
-          : {
-              total_water: 0,
-              total_co2: 0,
-              total_waste: 0,
-            };
+      const totalImpact = impactResult ?? {
+        total_water: 0,
+        total_co2: 0,
+        total_waste: 0,
+      };
 
       return {
-        items: Array.isArray(items) ? items : [],
+        items,
         totalImpact: {
-          water: totalImpact.total_water,
-          co2: totalImpact.total_co2,
-          waste: totalImpact.total_waste,
+          water: Number(totalImpact.total_water),
+          co2: Number(totalImpact.total_co2),
+          waste: Number(totalImpact.total_waste),
         },
       };
     } catch (error) {

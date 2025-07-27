@@ -48,6 +48,30 @@ const WardrobeItem = sequelize.define(
       type: DataTypes.STRING(255),
       allowNull: false,
     },
+    action_taken: {
+      type: DataTypes.ENUM(
+        "donate",
+        "repair",
+        "transform",
+        "recycle",
+        "pending"
+      ),
+      allowNull: false,
+      defaultValue: "pending",
+    },
+    action_date: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    action_location: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+    is_active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
     created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
     updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
   },

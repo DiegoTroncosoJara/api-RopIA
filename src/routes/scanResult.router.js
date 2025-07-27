@@ -4,6 +4,6 @@ import { scanResultController } from "../controllers/wardrobe/scanResult.control
 const router = Router();
 
 router.post("/", scanResultController.createScanner);
-router.post("/getWardrobeItems/:userId", scanResultController.getWardrobeItems);
+router.get("/getWardrobeItems/:userId", scanResultController.getWardrobeItems);
 
 export default router;
