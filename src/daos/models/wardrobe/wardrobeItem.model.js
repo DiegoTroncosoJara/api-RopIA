@@ -52,7 +52,7 @@ const WardrobeItem = sequelize.define(
       type: DataTypes.ENUM(
         "donate",
         "repair",
-        "transform",
+        // "transform",
         "recycle",
         "pending"
       ),

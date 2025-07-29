@@ -6,24 +6,6 @@ class ScanResultController extends Controllers {
     super(scanResultService);
   }
 
-  // createFase = async (req, res, next) => {
-  //   try {
-  //     const data = await this.service.createFase(req.body);
-  //     res.json(data);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // };
-
-  // cerrarFase = async (req, res, next) => {
-  //   try {
-  //     const data = await this.service.cerrarFase(req.body);
-  //     res.json(data);
-  //   } catch (error) {
-  //     next(error);
-  //   }
-  // };
-
   createScanner = async (req, res, next) => {
     try {
       await this.service.createScanner(req.body);
@@ -38,6 +20,25 @@ class ScanResultController extends Controllers {
       const { userId } = req.params;
       const data = await this.service.getWardrobeItems(userId);
       res.json(data);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  updateWardrobeItemAction = async (req, res, next) => {
+    try {
+      const { userId } = req.params;
+      const updatedItem = await this.service.updateWardrobeItemAction(
+        req.body,
+        userId
+      );
+      res.status(200).json({
+        message: "Action updated successfully",
+        item:
+          Array.isArray(updatedItem) && updatedItem.length > 0
+            ? updatedItem[0]
+            : null,
+      });
     } catch (error) {
       next(error);
     }

@@ -1,6 +1,6 @@
 import Services from "../service.manager.js";
 import { scanResultDao } from "../../daos/mysql/wardrobe/scanResult.dao.js";
-import WardrobeItem from "../../daos/models/wardrobe/wardrobeItem.model.js";
+import { wardrobeItemDao } from "../../daos/mysql/wardrobe/wardrobeItem.dao.js";
 
 class ScanResultService extends Services {
   constructor() {
@@ -69,6 +69,33 @@ class ScanResultService extends Services {
           waste: Number(totalImpact.total_waste),
         },
       };
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  updateWardrobeItemAction = async (data, userId) => {
+    try {
+      console.log("entro");
+      console.log("data: ", data);
+      console.log("userId: ", userId);
+
+      const { action, location, itemId } = data;
+      const existItem = await wardrobeItemDao.getWardrobeItemsByIditemIduser(
+        itemId,
+        userId
+      );
+      console.log();
+
+      if (!existItem) throw new Error("Item not found");
+
+      const itemUpdated = await wardrobeItemDao.update(itemId, {
+        action_taken: action,
+        action_date: new Date(),
+        action_location: location,
+      });
+
+      return itemUpdated;
     } catch (error) {
       throw error;
     }

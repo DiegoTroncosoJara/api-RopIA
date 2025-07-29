@@ -42,7 +42,7 @@ const ScanResult = sequelize.define(
     },
     photo_url: {
       type: DataTypes.STRING(500),
-      allowNull: false,
+      allowNull: true,
     },
 
     created_at: {
