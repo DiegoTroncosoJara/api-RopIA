@@ -4,6 +4,7 @@ import cors from "cors";
 import { clerkMiddleware, requireAuth, clerkClient } from "@clerk/express";
 import path from "path";
 import sequelize from "./db/connection.js";
+import "./daos/models/index.js";
 
 import uploadRouter from "./routes/upload.router.js";
 import scanRouter from "./routes/scanResult.router.js";

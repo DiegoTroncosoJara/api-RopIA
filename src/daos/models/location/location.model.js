@@ -14,6 +14,7 @@ const Location = sequelize.define(
       allowNull: true,
       references: { model: "providers", key: "id" },
     },
+
     name: {
       type: DataTypes.STRING(255),
       allowNull: false,
@@ -36,9 +37,10 @@ const Location = sequelize.define(
     },
     type: {
       type: DataTypes.ENUM(
-        "donation",
+        "donate",
         "repair",
-        "recycling",
+        "transform",
+        "recycle",
         "store",
         "workshop"
       ),

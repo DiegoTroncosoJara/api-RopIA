@@ -19,6 +19,11 @@ const Services = sequelize.define(
     //   allowNull: false,
     //   references: { model: "service_categories", key: "id" },
     // },
+    id_location: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: true,
+      references: { model: "locations", key: "id" },
+    },
     name: {
       type: DataTypes.STRING(255),
       allowNull: false,
