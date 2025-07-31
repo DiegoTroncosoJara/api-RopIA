@@ -15,12 +15,30 @@ const AvailabilityException = sequelize.define(
       allowNull: false,
       references: { model: "providers", key: "id" },
     },
-    exception_date: { type: DataTypes.DATE, allowNull: false },
-    is_available: { type: DataTypes.BOOLEAN, defaultValue: false },
-    start_time: { type: DataTypes.TIME, allowNull: true },
-    end_time: { type: DataTypes.TIME, allowNull: true },
-    reason: { type: DataTypes.STRING(255), allowNull: true },
-    created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    exception_date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    is_available: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    start_time: {
+      type: DataTypes.TIME,
+      allowNull: true,
+    },
+    end_time: {
+      type: DataTypes.TIME,
+      allowNull: true,
+    },
+    reason: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     tableName: "availability_exceptions",

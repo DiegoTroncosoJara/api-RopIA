@@ -21,22 +21,58 @@ const PortfolioItem = sequelize.define(
       allowNull: true,
       references: { model: "requests", key: "id" },
     },
-    title: { type: DataTypes.STRING(255), allowNull: false },
-    description: { type: DataTypes.TEXT, allowNull: true },
-    category: { type: DataTypes.STRING(100), allowNull: true },
-    before_photo_url: { type: DataTypes.STRING(500), allowNull: true },
-    after_photo_url: { type: DataTypes.STRING(500), allowNull: false },
-    additional_photos: { type: DataTypes.JSON, allowNull: true },
-    materials_used: { type: DataTypes.TEXT, allowNull: true },
-    time_taken_hours: { type: DataTypes.INTEGER, allowNull: true },
+    title: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    category: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
+    },
+    before_photo_url: {
+      type: DataTypes.STRING(500),
+      allowNull: true,
+    },
+    after_photo_url: {
+      type: DataTypes.STRING(500),
+      allowNull: false,
+    },
+    additional_photos: {
+      type: DataTypes.JSON,
+      allowNull: true,
+    },
+    materials_used: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    time_taken_hours: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
     difficulty_level: {
       type: DataTypes.ENUM("easy", "medium", "hard"),
       allowNull: true,
     },
-    is_featured: { type: DataTypes.BOOLEAN, defaultValue: false },
-    is_public: { type: DataTypes.BOOLEAN, defaultValue: true },
-    created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-    updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    is_featured: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    is_public: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     tableName: "portfolio_items",

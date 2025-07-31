@@ -15,14 +15,38 @@ const ProviderAvailability = sequelize.define(
       allowNull: false,
       references: { model: "providers", key: "id" },
     },
-    day_of_week: { type: DataTypes.TINYINT, allowNull: false },
-    start_time: { type: DataTypes.TIME, allowNull: false },
-    end_time: { type: DataTypes.TIME, allowNull: false },
-    is_available: { type: DataTypes.BOOLEAN, defaultValue: true },
-    break_start: { type: DataTypes.TIME, allowNull: true },
-    break_end: { type: DataTypes.TIME, allowNull: true },
-    created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-    updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    day_of_week: {
+      type: DataTypes.TINYINT,
+      allowNull: false,
+    },
+    start_time: {
+      type: DataTypes.TIME,
+      allowNull: false,
+    },
+    end_time: {
+      type: DataTypes.TIME,
+      allowNull: false,
+    },
+    is_available: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
+    break_start: {
+      type: DataTypes.TIME,
+      allowNull: true,
+    },
+    break_end: {
+      type: DataTypes.TIME,
+      allowNull: true,
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     tableName: "provider_availability",

@@ -15,7 +15,10 @@ const Provider = sequelize.define(
       allowNull: false,
       references: { model: "users", key: "id" },
     },
-    business_name: { type: DataTypes.STRING(255), allowNull: false },
+    business_name: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
     business_type: {
       type: DataTypes.ENUM(
         "atelier",
@@ -27,21 +30,66 @@ const Provider = sequelize.define(
       ),
       allowNull: false,
     },
-    description: { type: DataTypes.TEXT, allowNull: true },
-    address: { type: DataTypes.TEXT, allowNull: false },
-    latitude: { type: DataTypes.DECIMAL(10, 8), allowNull: true },
-    longitude: { type: DataTypes.DECIMAL(11, 8), allowNull: true },
-    phone: { type: DataTypes.STRING(20), allowNull: false },
-    website: { type: DataTypes.STRING(255), allowNull: true },
-    instagram: { type: DataTypes.STRING(100), allowNull: true },
-    facebook: { type: DataTypes.STRING(100), allowNull: true },
-    years_experience: { type: DataTypes.INTEGER, defaultValue: 0 },
-    certifications: { type: DataTypes.TEXT, allowNull: true },
-    is_verified: { type: DataTypes.BOOLEAN, defaultValue: false },
-    verification_date: { type: DataTypes.DATE, allowNull: true },
-    is_active: { type: DataTypes.BOOLEAN, defaultValue: true },
-    created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-    updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    address: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    latitude: {
+      type: DataTypes.DECIMAL(10, 8),
+      allowNull: true,
+    },
+    longitude: {
+      type: DataTypes.DECIMAL(11, 8),
+      allowNull: true,
+    },
+    phone: {
+      type: DataTypes.STRING(20),
+      allowNull: false,
+    },
+    website: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
+    instagram: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
+    },
+    facebook: {
+      type: DataTypes.STRING(100),
+      allowNull: true,
+    },
+    years_experience: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    certifications: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    is_verified: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    verification_date: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    is_active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     tableName: "providers",

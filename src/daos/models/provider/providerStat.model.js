@@ -16,15 +16,42 @@ const ProviderStat = sequelize.define(
       references: { model: "providers", key: "id" },
       unique: true,
     },
-    total_jobs: { type: DataTypes.INTEGER, defaultValue: 0 },
-    completed_jobs: { type: DataTypes.INTEGER, defaultValue: 0 },
-    cancelled_jobs: { type: DataTypes.INTEGER, defaultValue: 0 },
-    average_rating: { type: DataTypes.DECIMAL(3, 2), defaultValue: 0 },
-    total_reviews: { type: DataTypes.INTEGER, defaultValue: 0 },
-    total_earnings: { type: DataTypes.DECIMAL(10, 2), defaultValue: 0 },
-    response_time_hours: { type: DataTypes.INTEGER, defaultValue: 24 },
-    profile_views: { type: DataTypes.INTEGER, defaultValue: 0 },
-    last_updated: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    total_jobs: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    completed_jobs: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    cancelled_jobs: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    average_rating: {
+      type: DataTypes.DECIMAL(3, 2),
+      defaultValue: 0,
+    },
+    total_reviews: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    total_earnings: {
+      type: DataTypes.DECIMAL(10, 2),
+      defaultValue: 0,
+    },
+    response_time_hours: {
+      type: DataTypes.INTEGER,
+      defaultValue: 24,
+    },
+    profile_views: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    last_updated: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     tableName: "provider_stats",
