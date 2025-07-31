@@ -3,8 +3,8 @@ import { scanResultController } from "../controllers/wardrobe/scanResult.control
 
 const router = Router();
 
-router.get("/getWardrobeItems/:userId", scanResultController.getWardrobeItems);
 router.post("/", scanResultController.createScanner);
+router.get("/getWardrobeItems/:userId", scanResultController.getWardrobeItems);
 
 router.post(
   "/getWardrobeItems/:userId/action",

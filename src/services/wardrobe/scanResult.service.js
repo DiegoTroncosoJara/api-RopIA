@@ -33,7 +33,7 @@ class ScanResultService extends Services {
         photo_url,
       });
 
-      await WardrobeItem.create({
+      await wardrobeItemDao.create({
         user_id,
         scan_result_id: newScannResult.id,
         name,
