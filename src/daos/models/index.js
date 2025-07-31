@@ -2,6 +2,10 @@ import User from "./user/user.model.js";
 import ScanResult from "./wardrobe/scanResult.model.js";
 import WardrobeItem from "./wardrobe/wardrobeItem.model.js";
 
+import Provider from "./provider/provider.model.js";
+import Location from "./location/location.model.js";
+import Services from "./services/services.model.js";
+
 // RELACIONES CON SCAN RESULT
 User.hasMany(ScanResult, { foreignKey: "user_id" });
 ScanResult.belongsTo(User, { foreignKey: "user_id" });
@@ -12,4 +16,16 @@ ScanResult.belongsTo(WardrobeItem, { foreignKey: "wardrobe_item_id" });
 User.hasMany(WardrobeItem, { foreignKey: "user_id" });
 WardrobeItem.belongsTo(User, { foreignKey: "user_id" });
 
-export { User, ScanResult, WardrobeItem };
+// RELACION PROVEEDOR Y USUARIO
+User.hasOne(Provider, { foreignKey: "user_id" });
+Provider.belongsTo(User, { foreignKey: "user_id" });
+
+// RELACION PROVEEDOR Y LOCATIONS
+Provider.hasMany(Location, { foreignKey: "provider_id" });
+Location.belongsTo(Provider, { foreignKey: "provider_id" });
+
+// RELACION PROVEEDOR Y SERVICES: Un proveedor puede tener varios servicios
+Provider.hasMany(Services, { foreignKey: "provider_id" });
+Services.belongsTo(Provider, { foreignKey: "provider_id" });
+
+export { User, ScanResult, WardrobeItem, Provider, Location, Services };

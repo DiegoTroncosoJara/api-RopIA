@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../../db/connection.js";
-import User from "../user/user.model.js";
+import sequelize from "../../../db/connection.js";
 
 const Provider = sequelize.define(
   "Provider",
@@ -70,17 +69,29 @@ const Provider = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: true,
     },
+    specialties: {
+      type: DataTypes.JSON,
+      allowNull: true,
+    },
+    service_radius_km: {
+      type: DataTypes.INTEGER,
+      defaultValue: 10,
+    },
     is_verified: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-    verification_date: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
     is_active: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
+    },
+    onboarding_completed: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    onboarding_step: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1,
     },
     created_at: {
       type: DataTypes.DATE,
@@ -96,8 +107,5 @@ const Provider = sequelize.define(
     timestamps: false,
   }
 );
-
-User.hasOne(Provider, { foreignKey: "user_id" });
-Provider.belongsTo(User, { foreignKey: "user_id" });
 
 export default Provider;

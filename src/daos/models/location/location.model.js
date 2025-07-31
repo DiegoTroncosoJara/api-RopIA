@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../../db/connection.js";
-import Provider from "../provider/provider.model.js";
+import sequelize from "../../../db/connection.js";
 
 const Location = sequelize.define(
   "Location",
@@ -35,6 +34,16 @@ const Location = sequelize.define(
       type: DataTypes.DECIMAL(11, 8),
       allowNull: false,
     },
+    type: {
+      type: DataTypes.ENUM(
+        "donation",
+        "repair",
+        "recycling",
+        "store",
+        "workshop"
+      ),
+      allowNull: false,
+    },
     phone: {
       type: DataTypes.STRING(20),
       allowNull: true,
@@ -63,6 +72,11 @@ const Location = sequelize.define(
       type: DataTypes.STRING(500),
       allowNull: true,
     },
+    //  Public locations vs provider locations
+    is_public: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
     is_verified: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
@@ -85,8 +99,5 @@ const Location = sequelize.define(
     timestamps: false,
   }
 );
-
-Provider.hasMany(Location, { foreignKey: "provider_id" });
-Location.belongsTo(Provider, { foreignKey: "provider_id" });
 
 export default Location;
