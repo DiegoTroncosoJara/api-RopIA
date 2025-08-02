@@ -29,7 +29,7 @@ Provider.hasMany(Services, { foreignKey: "provider_id" });
 Services.belongsTo(Provider, { foreignKey: "provider_id" });
 
 // RELACION LOCATIONS CON SERVICES
-Location.hasMany(Services, { foreignKey: "id_location" });
-Services.belongsTo(Location, { foreignKey: "id_location" });
+Location.hasMany(Services, { foreignKey: "id_location", as: "services" });
+Services.belongsTo(Location, { foreignKey: "id_location", as: "location" });
 
 export { User, ScanResult, WardrobeItem, Provider, Location, Services };

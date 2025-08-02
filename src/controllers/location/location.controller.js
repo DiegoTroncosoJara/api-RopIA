@@ -1,0 +1,26 @@
+import Controllers from "../controller.manager.js";
+import { locationService } from "../../services/location/location.service.js";
+
+class LocationController extends Controllers {
+  constructor() {
+    super(locationService);
+  }
+
+  getLocations = async (req, res, next) => {
+    try {
+      const userLat = req.query.userLat;
+      const userLng = req.query.userLng;
+      const radiusKm = req.query?.radiusKm ?? 5;
+      const locations = await this.service.createScanner({
+        userLat,
+        userLng,
+        radiusKm,
+      });
+      res.json(locations);
+    } catch (error) {
+      next(error);
+    }
+  };
+}
+
+export const locationController = new LocationController();

@@ -59,7 +59,8 @@ const Location = sequelize.define(
       allowNull: true,
     },
     opening_hours: {
-      type: DataTypes.JSON,
+      // type: DataTypes.JSON,
+      type: DataTypes.TEXT,
       allowNull: true,
     },
     rating: {
@@ -70,6 +71,12 @@ const Location = sequelize.define(
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
+    price: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      defaultValue: "Gratuito",
+    },
+
     photo_url: {
       type: DataTypes.STRING(500),
       allowNull: true,

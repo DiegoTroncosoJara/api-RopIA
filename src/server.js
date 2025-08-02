@@ -8,6 +8,7 @@ import "./daos/models/index.js";
 
 import uploadRouter from "./routes/upload.router.js";
 import scanRouter from "./routes/scanResult.router.js";
+import locationRouter from "./routes/location.router.js";
 
 const app = express();
 app.use(
@@ -30,6 +31,7 @@ app.use((req, res, next) => {
 app.use("/api/scan", scanRouter);
 app.use("/api/archivo", express.static(path.resolve("archivo")));
 app.use("/api/files", uploadRouter);
+app.use("/api/location", locationRouter);
 
 // Endpoint seguro para asignar rol
 app.post("/api/set-role", requireAuth(), async (req, res) => {

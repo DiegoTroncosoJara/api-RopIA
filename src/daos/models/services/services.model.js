@@ -11,7 +11,7 @@ const Services = sequelize.define(
     },
     provider_id: {
       type: DataTypes.BIGINT.UNSIGNED,
-      allowNull: false,
+      allowNull: true,
       references: { model: "providers", key: "id" },
     },
     // category_id: {
