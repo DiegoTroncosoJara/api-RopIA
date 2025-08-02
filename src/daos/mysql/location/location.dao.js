@@ -7,7 +7,7 @@ class LocationDaoMysql extends MysqlDao {
     super(Location);
   }
 
-  async getLocations(userLat, userLng, radiusKm = 5) {
+  async getLocations(userLat, userLng, radiusKm = 5, type) {
     try {
       const distanceFormula = `
         6371 * acos(
@@ -19,11 +19,19 @@ class LocationDaoMysql extends MysqlDao {
         )
       `;
 
+      const whereClause = {
+        [Op.and]: [literal(`${distanceFormula} <= ${radiusKm}`)],
+      };
+
+      if (type) {
+        whereClause[Op.and].push({ type });
+      }
+
       const locations = await this.model.findAll({
         attributes: {
           include: [[literal(distanceFormula), "distance_km"]],
         },
-        where: literal(`${distanceFormula} <= ${radiusKm}`), // solo dentro del radio
+        where: whereClause,
         include: [
           {
             model: Services,

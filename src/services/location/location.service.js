@@ -8,9 +8,14 @@ class LocationService extends Services {
 
   getLocations = async (data) => {
     try {
-      const { userLat, userLng, radiusKm = 5 } = data;
+      const { userLat, userLng, radiusKm = 5, type = null } = data;
 
-      const locations = await this.dao.getLocations(userLat, userLng, radiusKm);
+      const locations = await this.dao.getLocations(
+        userLat,
+        userLng,
+        radiusKm,
+        type
+      );
 
       const locationsWithServices = locations.map((loc) => ({
         id: loc.id,
@@ -24,7 +29,7 @@ class LocationService extends Services {
         price: loc.price,
         latitude: loc.latitude,
         longitude: loc.longitude,
-        services: loc.Services.map((s) => s.name),
+        services: loc.services.map((s) => s.name),
         isFavorite: false,
         distance_km: loc.get("distance_km"),
       }));

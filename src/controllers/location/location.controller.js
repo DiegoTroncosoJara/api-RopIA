@@ -11,10 +11,12 @@ class LocationController extends Controllers {
       const userLat = req.query.userLat;
       const userLng = req.query.userLng;
       const radiusKm = req.query?.radiusKm ?? 5;
-      const locations = await this.service.createScanner({
+      const type = req.query?.type ?? null;
+      const locations = await this.service.getLocations({
         userLat,
         userLng,
         radiusKm,
+        type,
       });
       res.json(locations);
     } catch (error) {
