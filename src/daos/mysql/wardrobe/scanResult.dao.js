@@ -22,8 +22,11 @@ class ScanResultDaoMysql extends MysqlDao {
         wi.created_at AS dateAdded,
         wi.impact_water_saved AS impactWater,
         wi.impact_co2_saved AS impactCO2,
-        wi.impact_waste_saved AS impactWaste
+        wi.impact_waste_saved AS impactWaste,
+        sr.recommendations,
+        sr.photo_url as photoUrl
       FROM wardrobe_items wi
+      JOIN scan_results sr ON wi.scan_result_id = sr.id
       WHERE wi.user_id = :userId AND wi.is_active = true
       ORDER BY wi.created_at DESC
       `,
