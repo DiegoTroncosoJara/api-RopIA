@@ -44,6 +44,8 @@ class ScanResultService extends Services {
         impact_co2_saved,
         impact_waste_saved,
       });
+
+      return newScannResult;
     } catch (error) {
       throw error;
     }

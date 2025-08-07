@@ -33,6 +33,7 @@ class LocationService extends Services {
         isFavorite: false,
         distance_km: loc.get("distance_km"),
       }));
+      console.log("locationsWithServices: ", locationsWithServices);
 
       return locationsWithServices;
     } catch (error) {

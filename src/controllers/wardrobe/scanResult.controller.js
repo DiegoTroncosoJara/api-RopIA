@@ -8,8 +8,8 @@ class ScanResultController extends Controllers {
 
   createScanner = async (req, res, next) => {
     try {
-      await this.service.createScanner(req.body);
-      res.status(200).send();
+      const data = await this.service.createScanner(req.body);
+      res.status(200).json(data);
     } catch (error) {
       next(error);
     }
