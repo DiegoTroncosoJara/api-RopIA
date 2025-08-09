@@ -22,7 +22,6 @@ class ScanResultService extends Services {
         impact_waste_saved,
         photo_url,
       } = data;
-      console.log("data: ", data);
 
       const params = {
         user_id,
@@ -42,7 +41,7 @@ class ScanResultService extends Services {
 
       const newScannResult = await this.dao.create(params);
 
-      await wardrobeItemDao.create({
+      const wardrobeItem = await wardrobeItemDao.create({
         user_id,
         scan_result_id: newScannResult.id,
         name,
@@ -57,7 +56,7 @@ class ScanResultService extends Services {
         impact_waste_saved,
       });
 
-      return newScannResult;
+      return wardrobeItem;
     } catch (error) {
       throw error;
     }
@@ -90,10 +89,6 @@ class ScanResultService extends Services {
 
   updateWardrobeItemAction = async (data, userId) => {
     try {
-      console.log("entro");
-      console.log("data: ", data);
-      console.log("userId: ", userId);
-
       const { action, location, itemId } = data;
       const existItem = await wardrobeItemDao.getWardrobeItemsByIditemIduser(
         itemId,
