@@ -24,21 +24,33 @@ class ScanResultService extends Services {
       } = data;
       console.log("data: ", data);
 
-      const newScannResult = await this.dao.create({
+      const params = {
         user_id,
-        composition,
         condition_detected,
         ai_confidence,
-        recommendations,
         photo_url,
-      });
+        // Asegurado como string
+        composition:
+          typeof composition === "string"
+            ? composition
+            : JSON.stringify(composition ?? null),
+        recommendations:
+          typeof recommendations === "string"
+            ? recommendations
+            : JSON.stringify(recommendations ?? []),
+      };
+
+      const newScannResult = await this.dao.create(params);
 
       await wardrobeItemDao.create({
         user_id,
         scan_result_id: newScannResult.id,
         name,
         clothing_type,
-        composition,
+        composition:
+          typeof composition === "string"
+            ? composition
+            : JSON.stringify(composition ?? null),
         condition_status: condition_detected,
         impact_water_saved,
         impact_co2_saved,

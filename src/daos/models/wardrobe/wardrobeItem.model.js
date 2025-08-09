@@ -29,7 +29,7 @@ const WardrobeItem = sequelize.define(
       allowNull: false,
     },
     composition: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     condition_status: {

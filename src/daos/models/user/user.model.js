@@ -12,7 +12,7 @@ const User = sequelize.define(
     clerk_user_id: {
       type: DataTypes.STRING(128),
       allowNull: false,
-      unique: true,
+      // unique: true,
     },
     email: {
       type: DataTypes.STRING(255),

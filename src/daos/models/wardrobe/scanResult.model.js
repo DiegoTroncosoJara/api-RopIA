@@ -25,19 +25,20 @@ const ScanResult = sequelize.define(
       allowNull: true,
     },
     composition: {
-      type: DataTypes.STRING(500),
-      allowNull: false,
+      // type: DataTypes.JSON,
+      type: DataTypes.TEXT,
+      allowNull: true,
     },
     condition_detected: {
       type: DataTypes.STRING(500),
       allowNull: false,
     },
     ai_confidence: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     recommendations: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.BLOB,
       allowNull: false,
     },
     photo_url: {
