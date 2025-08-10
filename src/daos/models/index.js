@@ -1,7 +1,6 @@
 import User from "./user/user.model.js";
 import ScanResult from "./wardrobe/scanResult.model.js";
 import WardrobeItem from "./wardrobe/wardrobeItem.model.js";
-
 import Provider from "./provider/provider.model.js";
 import Location from "./location/location.model.js";
 import Services from "./services/services.model.js";
