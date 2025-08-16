@@ -34,7 +34,6 @@ class LocationService extends Services {
         isFavorite: false,
         distance_km: loc.get("distance_km"),
       }));
-      console.log("locationsWithServices: ", locationsWithServices);
 
       return locationsWithServices;
     } catch (error) {
@@ -44,8 +43,6 @@ class LocationService extends Services {
 
   createLocationsWithServices = async (data) => {
     try {
-      console.log("data: ", data);
-
       const {
         address,
         description,

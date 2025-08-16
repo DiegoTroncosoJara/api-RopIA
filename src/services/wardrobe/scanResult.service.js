@@ -94,7 +94,6 @@ class ScanResultService extends Services {
         itemId,
         userId
       );
-      console.log();
 
       if (!existItem) throw new Error("Item not found");
 
