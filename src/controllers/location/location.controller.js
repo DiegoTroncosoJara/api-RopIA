@@ -23,6 +23,17 @@ class LocationController extends Controllers {
       next(error);
     }
   };
+
+  createLocationsWithServices = async (req, res, next) => {
+    try {
+      const locations = await this.service.createLocationsWithServices(
+        req.body
+      );
+      res.json(locations);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export const locationController = new LocationController();

@@ -42,7 +42,8 @@ const Location = sequelize.define(
         "transform",
         "recycle",
         "store",
-        "workshop"
+        "workshop",
+        "other"
       ),
       allowNull: false,
     },

@@ -1,5 +1,6 @@
 import Services from "../service.manager.js";
 import { locationDao } from "../../daos/mysql/location/location.dao.js";
+import { servicesDao } from "../../daos/mysql/services/services.dao.js";
 
 class LocationService extends Services {
   constructor() {
@@ -36,6 +37,56 @@ class LocationService extends Services {
       console.log("locationsWithServices: ", locationsWithServices);
 
       return locationsWithServices;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  createLocationsWithServices = async (data) => {
+    try {
+      console.log("data: ", data);
+
+      const {
+        address,
+        description,
+        email,
+        is_public,
+        latitude,
+        longitude,
+        name,
+        phone,
+        type,
+        website,
+        services,
+      } = data;
+
+      const newLocation = await this.dao.create({
+        address,
+        description,
+        email,
+        is_public,
+        latitude,
+        longitude,
+        name,
+        phone,
+        type,
+        website,
+      });
+
+      const servicePromises = services.map((service) =>
+        servicesDao.create({
+          location_id: newLocation.id,
+          category: service.category,
+          description: service.description,
+          duration_hours: service.duration_hours,
+          name: service.name,
+          price: service.price,
+        })
+      );
+
+      await Promise.all(servicePromises);
+
+      return newLocation;
     } catch (error) {
       throw error;
     }

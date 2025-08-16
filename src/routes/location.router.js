@@ -3,5 +3,9 @@ import { locationController } from "../controllers/location/location.controller.
 const router = Router();
 
 router.get("/getLocations/", locationController.getLocations);
+router.post(
+  "/createLocationsWithServices/",
+  locationController.createLocationsWithServices
+);
 
 export default router;
