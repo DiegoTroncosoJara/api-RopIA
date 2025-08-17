@@ -19,7 +19,7 @@ const sequelize = new Sequelize(
     pool: {
       max: 50, // Aumenta el número máximo de conexiones
       min: 5, // Mantén algunas conexiones persistentes
-      acquire: 30000,
+      acquire: 60000,
       idle: 10000,
     },
   }
