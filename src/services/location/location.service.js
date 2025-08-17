@@ -55,6 +55,8 @@ class LocationService extends Services {
         type,
         website,
         services,
+        opening_hours,
+        opening_hours_json,
       } = data;
 
       const newLocation = await this.dao.create({
@@ -68,6 +70,8 @@ class LocationService extends Services {
         phone,
         type,
         website,
+        opening_hours,
+        opening_hours_json,
       });
 
       const servicePromises = services.map((service) =>

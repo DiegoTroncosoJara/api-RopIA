@@ -64,6 +64,10 @@ const Location = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: true,
     },
+    opening_hours_json: {
+      type: DataTypes.JSON,
+      allowNull: true,
+    },
     rating: {
       type: DataTypes.DECIMAL(3, 2),
       defaultValue: 0,
