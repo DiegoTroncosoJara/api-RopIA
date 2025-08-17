@@ -17,10 +17,13 @@ const sequelize = new Sequelize(
       freezeTableName: true,
     },
     pool: {
-      max: 50, // Aumenta el número máximo de conexiones
-      min: 5, // Mantén algunas conexiones persistentes
+      max: 10, // Aumenta el número máximo de conexiones
+      min: 2, // Mantén algunas conexiones persistentes
       acquire: 60000,
       idle: 10000,
+    },
+    dialectOptions: {
+      connectTimeout: 60000, // 60s para intentar conexión inicial
     },
   }
 );
