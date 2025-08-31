@@ -9,6 +9,8 @@ import "./daos/models/index.js";
 import uploadRouter from "./routes/upload.router.js";
 import scanRouter from "./routes/scanResult.router.js";
 import locationRouter from "./routes/location.router.js";
+import { usersService } from "./services/users/users.service.js";
+import usersRouter from "./routes/users.router.js";
 
 const app = express();
 app.use(
@@ -39,6 +41,8 @@ app.use("/api/scan", scanRouter);
 app.use("/api/archivo", express.static(path.resolve("archivo")));
 app.use("/api/files", uploadRouter);
 app.use("/api/location", locationRouter);
+
+app.use("/api/users", usersRouter);
 
 // Endpoint seguro para asignar rol
 // Endpoint seguro para asignar rol
@@ -74,6 +78,7 @@ app.post("/api/set-role", requireAuth(), async (req, res) => {
     });
 
     console.log("✅ Metadata actualizada:", user.publicMetadata);
+    await usersService.updateUser(userId, { user_type: role });
 
     res.json({
       success: true,
