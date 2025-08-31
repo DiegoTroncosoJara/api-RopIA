@@ -10,8 +10,8 @@ services:
     volumes:
       - ./src:/usr/src/app/src
     environment:
-      CLERK_PUBLISHABLE_KEY: pk_test_bGVnYWwtd2FscnVzLTkzLmNsZXJrLmFjY291bnRzLmRldiQ
-      CLERK_SECRET_KEY: sk_test_iSuOSGDqdQ5GQakMuG4nuGCyxAiNaFjS66AcBCK0JU
+      CLERK_PUBLISHABLE_KEY: pk_live_Y2xlcmsudmlsbGFudWV2YS1kZXYuY29tJA
+      CLERK_SECRET_KEY: sk_live_L8PrHKgDPsfXxtx7V0S5cOzCUanuw5MjbY0gIgVW9c
       DB_NAME: ropia-db
       DB_USER: adminRopIaDb
       DB_PASSWORD: OwPMNjzSAtH6sOY0xHuh
