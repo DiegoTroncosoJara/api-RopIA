@@ -23,6 +23,13 @@ app.use(express.json());
 // app.use(clerkMiddleware());
 // app.use(requireAuth());
 
+app.use(
+  clerkMiddleware({
+    publishableKey: process.env.CLERK_PUBLISHABLE_KEY,
+    secretKey: process.env.CLERK_SECRET_KEY,
+  })
+);
+
 app.use((req, res, next) => {
   console.log(`[${req.method}] ${req.url}`);
   next();
@@ -34,25 +41,56 @@ app.use("/api/files", uploadRouter);
 app.use("/api/location", locationRouter);
 
 // Endpoint seguro para asignar rol
+// Endpoint seguro para asignar rol
 app.post("/api/set-role", requireAuth(), async (req, res) => {
-  const { userId, role } = req.body;
-
-  console.log("🔐 userId:", userId);
-
-  // Validación del rol
-  if (!["cliente", "proveedor"].includes(role)) {
-    return res.status(400).json({ error: "Rol inválido" });
-  }
-
   try {
+    const { userId, role } = req.body;
+
+    // Obtener el usuario autenticado desde Clerk
+    const authenticatedUserId = req.auth.userId;
+
+    console.log("🔐 Authenticated userId:", authenticatedUserId);
+    console.log("📝 Requested userId:", userId);
+
+    // Verificar que el usuario solo pueda actualizar su propio perfil
+    if (authenticatedUserId !== userId) {
+      return res.status(403).json({
+        error: "No puedes actualizar el perfil de otro usuario",
+      });
+    }
+
+    // Validación del rol
+    if (!["cliente", "proveedor"].includes(role)) {
+      return res.status(400).json({ error: "Rol inválido" });
+    }
+
+    // Actualizar metadata
     const user = await clerkClient.users.updateUserMetadata(userId, {
-      publicMetadata: { role },
+      publicMetadata: {
+        role,
+        roleAssignedAt: new Date().toISOString(),
+        onboardingCompleted: true,
+      },
     });
+
     console.log("✅ Metadata actualizada:", user.publicMetadata);
-    res.json({ success: true, publicMetadata: user.publicMetadata });
+
+    res.json({
+      success: true,
+      publicMetadata: user.publicMetadata,
+    });
   } catch (err) {
     console.error("❌ Error en la actualización:", err);
-    res.status(500).json({ error: "Fallo asignando rol" });
+
+    // Log más detallado del error
+    if (err.errors) {
+      console.error("Clerk errors:", err.errors);
+    }
+
+    res.status(500).json({
+      error: "Fallo asignando rol",
+      details: process.env.NODE_ENV === "development" ? err.message : undefined,
+    });
   }
 });
 
